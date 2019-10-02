@@ -1,56 +1,96 @@
 <?php
 
-abstract class CarDetail {
+interface Vehicle
+{
+    public function isBroken(): bool;
 
-    protected $isBroken;
-    protected $isPaintingDamaged;
+    public function isPaintingDamaged(): bool;
+}
 
-    public function __construct(bool $isBroken, bool $isPaintingDamaged)
+interface Inspection
+{
+    /**
+     * @param VehicleDetail[]
+     * @return bool
+     */
+    public function isBroken(array $vehicleDetails): bool;
+
+    /**
+     * @param VehicleDetail[]
+     * @return bool
+     */
+    public function isPaintingDamaged(array $vehicleDetails): bool;
+}
+
+abstract class VehicleDetail
+{
+    public $name;
+    public $isBroken;
+    public $isPaintingDamaged;
+
+    public function __construct(string $name, bool $isBroken, bool $isPaintingDamaged)
     {
+        $this->name = $name;
         $this->isBroken = $isBroken;
         $this->isPaintingDamaged = $isPaintingDamaged;
     }
+}
 
-    public function isBroken(): bool
+class CarDetail extends VehicleDetail
+{
+    public function __construct(string $name, bool $isBroken, bool $isPaintingDamaged)
     {
-        return $this->isBroken;
-    }
-
-    public function isPaintingDamaged(): bool
-    {
-        return $this->isPaintingDamaged;
+        parent::__construct($name, $isBroken, $isPaintingDamaged);
     }
 }
 
-class Door extends CarDetail
+class Car implements Vehicle
 {
-}
-
-class Tyre extends CarDetail
-{
-}
-
-class Car
-{
+    /**
+     * @var Inspection
+     */
+    protected $inspect;
 
     /**
      * @var CarDetail[]
      */
-    private $details;
+    public $details;
 
     /**
-     * @param CarDetail[] $details
+     * Car constructor.
+     * @param Inspection $carInspect
+     * @param CarDetail[]
      */
-    public function __construct(array $details)
+    public function __construct(Inspection $carInspect, array $details)
     {
+        $this->inspect = $carInspect;
         $this->details = $details;
     }
 
     public function isBroken(): bool
     {
-        foreach ($this->details as $detail) {
+        return
+            $this->inspect
+                ->isBroken($this->details);
+    }
 
-            if ($detail->isBroken()) {
+    public function isPaintingDamaged(): bool
+    {
+        return $this->inspect
+            ->isPaintingDamaged($this->details);
+    }
+}
+
+class CarInspect implements Inspection
+{
+    /**
+     * @param CarDetail[] $details
+     * @return bool
+     */
+    public function isBroken(array $details): bool
+    {
+        foreach ($details as $detail) {
+            if ($detail->isBroken === true) {
                 return true;
             }
         }
@@ -58,11 +98,14 @@ class Car
         return false;
     }
 
-    public function isPaintingDamaged(): bool
+    /**
+     * @param CarDetail[] $details
+     * @return bool
+     */
+    public function isPaintingDamaged(array $details): bool
     {
-        foreach ($this->details as $detail) {
-
-            if ($detail->isPaintingDamaged()) {
+        foreach ($details as $detail) {
+            if ($detail->isPaintingDamaged === true) {
                 return true;
             }
         }
@@ -70,5 +113,3 @@ class Car
         return false;
     }
 }
-
-$car = new Car([new Door(true), new Tyre(false)]); // we pass a list of all details
