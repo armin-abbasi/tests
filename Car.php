@@ -113,3 +113,18 @@ class CarInspect implements Inspection
         return false;
     }
 }
+
+$car = new Car(
+    new CarInspect(),
+    [
+        (new CarDetail('door', false, false)),
+        (new CarDetail('bonet', true, true))
+    ]
+);
+
+echo "is Broken ? " . (bool)$car->isBroken();
+
+echo "\n\n";
+
+echo "is Painted ? " . (bool)$car->isPaintingDamaged();
+
