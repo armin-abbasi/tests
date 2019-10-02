@@ -52,14 +52,14 @@ class Car implements Vehicle
     protected $inspect;
 
     /**
-     * @var CarDetail[]
+     * @var VehicleDetail[]
      */
     public $details;
 
     /**
      * Car constructor.
      * @param Inspection $carInspect
-     * @param CarDetail[]
+     * @param VehicleDetail[]
      */
     public function __construct(Inspection $carInspect, array $details)
     {
@@ -84,7 +84,7 @@ class Car implements Vehicle
 class CarInspect implements Inspection
 {
     /**
-     * @param CarDetail[] $details
+     * @param VehicleDetail[] $details
      * @return bool
      */
     public function isBroken(array $details): bool
@@ -99,7 +99,7 @@ class CarInspect implements Inspection
     }
 
     /**
-     * @param CarDetail[] $details
+     * @param VehicleDetail[] $details
      * @return bool
      */
     public function isPaintingDamaged(array $details): bool
