@@ -3,15 +3,22 @@
 abstract class CarDetail {
 
     protected $isBroken;
+    protected $isPaintingDamaged;
 
-    public function __construct(bool $isBroken)
+    public function __construct(bool $isBroken, bool $isPaintingDamaged)
     {
         $this->isBroken = $isBroken;
+        $this->isPaintingDamaged = $isPaintingDamaged;
     }
 
     public function isBroken(): bool
     {
         return $this->isBroken;
+    }
+
+    public function isPaintingDamaged(): bool
+    {
+        return $this->isPaintingDamaged;
     }
 }
 
@@ -53,7 +60,14 @@ class Car
 
     public function isPaintingDamaged(): bool
     {
-        // MAKE AN IMPLEMENTATION
+        foreach ($this->details as $detail) {
+
+            if ($detail->isPaintingDamaged()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
 
