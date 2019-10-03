@@ -1,13 +1,13 @@
 <?php
 
-interface Vehicle
+interface VehicleInterface
 {
     public function isBroken(): bool;
 
     public function isPaintingDamaged(): bool;
 }
 
-interface Inspection
+interface InspectionInterface
 {
     /**
      * @param VehicleDetail[]
@@ -51,10 +51,10 @@ class Door extends VehicleDetail
     }
 }
 
-class Car implements Vehicle
+class Car implements VehicleInterface
 {
     /**
-     * @var Inspection
+     * @var InspectionInterface
      */
     protected $inspect;
 
@@ -65,10 +65,10 @@ class Car implements Vehicle
 
     /**
      * Car constructor.
-     * @param Inspection $carInspect
+     * @param InspectionInterface $carInspect
      * @param VehicleDetail[]
      */
-    public function __construct(Inspection $carInspect, array $details)
+    public function __construct(InspectionInterface $carInspect, array $details)
     {
         $this->inspect = $carInspect;
         $this->details = $details;
@@ -89,7 +89,7 @@ class Car implements Vehicle
     }
 }
 
-class CarInspect implements Inspection
+class CarInspect implements InspectionInterface
 {
     /**
      * @param VehicleDetail[] $details
@@ -126,7 +126,7 @@ $car = new Car(
     new CarInspect(),
     [
         (new Hood(false, false)),
-        (new Door(true, true))
+        (new Door(false, true))
     ]
 );
 
