@@ -1,0 +1,13 @@
+{
+    "name": "armin/tests",
+    "authors": [
+        {
+            "name": "Armin Abbasi",
+            "email": "armin.abbasi@hotmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^8.3"
+    }
+}
