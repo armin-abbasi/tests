@@ -28,19 +28,26 @@ abstract class VehicleDetail
     public $isBroken;
     public $isPaintingDamaged;
 
-    public function __construct(string $name, bool $isBroken, bool $isPaintingDamaged)
+    public function __construct(bool $isBroken, bool $isPaintingDamaged)
     {
-        $this->name = $name;
         $this->isBroken = $isBroken;
         $this->isPaintingDamaged = $isPaintingDamaged;
     }
 }
 
-class CarDetail extends VehicleDetail
+class Hood extends VehicleDetail
 {
-    public function __construct(string $name, bool $isBroken, bool $isPaintingDamaged)
+    public function __construct(bool $isBroken, bool $isPaintingDamaged)
     {
-        parent::__construct($name, $isBroken, $isPaintingDamaged);
+        parent::__construct($isBroken, $isPaintingDamaged);
+    }
+}
+
+class Door extends VehicleDetail
+{
+    public function __construct(bool $isBroken, bool $isPaintingDamaged)
+    {
+        parent::__construct($isBroken, $isPaintingDamaged);
     }
 }
 
@@ -76,8 +83,9 @@ class Car implements Vehicle
 
     public function isPaintingDamaged(): bool
     {
-        return $this->inspect
-            ->isPaintingDamaged($this->details);
+        return
+            $this->inspect
+                ->isPaintingDamaged($this->details);
     }
 }
 
@@ -117,8 +125,8 @@ class CarInspect implements Inspection
 $car = new Car(
     new CarInspect(),
     [
-        (new CarDetail('door', false, false)),
-        (new CarDetail('bonet', true, true))
+        (new Hood(false, false)),
+        (new Door(true, true))
     ]
 );
 
