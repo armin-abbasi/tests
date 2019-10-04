@@ -1,8 +1,8 @@
-`ROUTE` ```/api/v1/lot```
+route ```/api/v1/lot```
 
-`METHOD` ```POST```
+method ```POST```
 
-`REQUEST`
+request
 ```json 
 {
     "supplier": "Delicious bananas LTD",
@@ -13,11 +13,11 @@
 }
 ```
 
-`RESPONSE`
+response
 ```json
 {
   "status": 200,
-  "message": "your lot successfully created.",
+  "message": "your lot created successfully.",
   "data": {
     "id": 899,
     "supplier": "Delicious bananas LTD",
