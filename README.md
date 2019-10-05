@@ -75,7 +75,7 @@
    request
    ```json
     {
-       "harvesting_date": "2018-09-04"
+       "harvesting_date": "2018-07-14"
     }
    ```
    
@@ -220,7 +220,7 @@
          "cultivar": "Red Dacca",
          "origin": "Costa Rica",
          "weight": 1500,
-         "harvesting_date": "2018-09-04"
+         "harvesting_date": "2018-07-14"
        }
      }
     ```
