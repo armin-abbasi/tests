@@ -8,22 +8,22 @@ function hourglassSum($arr) {
     for ($row = 1; $row < 5; $row++) {
         for ($i = 0; $i < 4; $i++) {
             if (
-                isLegit($arr[$i][$row - 1]) &&
-                isLegit($arr[$i + 1][$row - 1]) &&
-                isLegit($arr[$i + 2][$row - 1]) &&
-                isLegit($arr[$i + 1][$row]) &&
-                isLegit($arr[$i][$row + 1]) &&
-                isLegit($arr[$i + 1][$row + 1]) &&
-                isLegit($arr[$i + 2][$row + 1])
+                isLegit($arr[$row - 1][$i]) &&
+                isLegit($arr[$row - 1][$i + 1]) &&
+                isLegit($arr[$row - 1][$i + 2]) &&
+                isLegit($arr[$row][$i + 1]) &&
+                isLegit($arr[$row + 1][$i]) &&
+                isLegit($arr[$row + 1][$i + 1]) &&
+                isLegit($arr[$row + 1][$i + 2])
             ) {
                 $hourGlasses[] =
-                    $arr[$i][$row - 1] +
-                    $arr[$i + 1][$row - 1] +
-                    $arr[$i + 2][$row - 1] +
-                    $arr[$i + 1][$row] +
-                    $arr[$i][$row + 1] +
-                    $arr[$i + 1][$row + 1] +
-                    $arr[$i + 2][$row + 1];
+                    $arr[$row - 1][$i] +
+                    $arr[$row - 1][$i + 1] +
+                    $arr[$row - 1][$i + 2] +
+                    $arr[$row][$i + 1] +
+                    $arr[$row + 1][$i] +
+                    $arr[$row + 1][$i + 1] +
+                    $arr[$row + 1][$i + 2];
             }
         }
     }
