@@ -1,6 +1,10 @@
 <?php
 
-function numberOfConnections($gridOfNodes)
+/**
+ * @param array $gridOfNodes
+ * @return int
+ */
+function numberOfConnections(array $gridOfNodes): int
 {
     $nodes = 0;
     $start = count($gridOfNodes) - 1;
@@ -23,7 +27,11 @@ function numberOfConnections($gridOfNodes)
     return $nodes;
 }
 
-function countOnes($arr)
+/**
+ * @param array $arr
+ * @return int
+ */
+function countOnes(array $arr): int
 {
     if (empty($arr)) {
         return false;
